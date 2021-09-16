@@ -27,8 +27,8 @@ const   checkDeveloper=await EstimateRequestDeveloper
 return checkDeveloper;
 };
 
-async UpdatingEstimateRequest(projectId,update){
-  const updatedEstimateRequest= await EstimateRequest
+async UpdatingEstimateRequestDevelopers(projectId,update){
+  let updatedEstimateRequest= await EstimateRequest
   .findOneAndUpdate({ _id:projectId},{$set:{developers:update}},{new:true});
   return updatedEstimateRequest;
 };
@@ -37,6 +37,12 @@ async updateEstimateRequestDetails(value,value1){
     const estimateRequestsSaved = await EstimateRequest
     .findOneAndUpdate({ _id:value},{$set:value1},{new:true});
     return estimateRequestsSaved;
+  };
+
+  async UpdatingEstimateRequestEstimates(estimateRequestId,update){
+    let updated_estimateRequest= await EstimateRequest
+    .findOneAndUpdate({ _id:estimateRequestId},{$set:{estimates:update}},{new:true});
+    return updated_estimateRequest;
   };
 // async UpdatingProjectManager(value,value1){
 //   const updatedProjectManager= await User.ProjectManager

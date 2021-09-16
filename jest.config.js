@@ -1,7 +1,7 @@
 
 
 module.exports = {
-  preset: "@shelf/jest-mongodb",
+  //preset: "@shelf/jest-mongodb",
   // All imported modules in your tests should be mocked automatically
   // automock: false,
   // Stop running tests after `n` failures
@@ -26,9 +26,9 @@ module.exports = {
    coverageDirectory: "tests/coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  coveragePathIgnorePatterns: [
+    "/node_modules/"
+  ],
 
   //A list of reporter names that Jest uses when writing coverage reports
   coverageReporters: [
@@ -37,7 +37,7 @@ module.exports = {
   ],
 
   // An object that configures minimum threshold enforcement for coverage results
-  // coverageThreshold: null,
+   coverageThreshold: null,
 
   // A path to a custom dependency extractor
   // dependencyExtractor: null,
@@ -46,7 +46,7 @@ module.exports = {
   // errorOnDeprecated: false,
 
   // Force coverage collection from ignored files using an array of glob patterns
-  // forceCoverageMatch: [],
+   forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
   // globalSetup: null,

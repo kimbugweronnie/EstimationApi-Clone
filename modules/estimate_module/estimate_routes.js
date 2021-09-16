@@ -27,14 +27,19 @@ verifyAccount.getPayload,
  verifyAccount.reqHeader,
  verifyAccount.getPayload,
   (req, res) =>
-  estimateController.getDeveloperTasks(req, res));
+  estimateController.getAllDeveloperTasks(req, res));
 
+  router.get('/developer/tasks/:estimateRequestId',
+  verifyAccount.reqHeader,
+  verifyAccount.getPayload,
+   (req, res) =>
+   estimateController.gettingDevelopersTasks(req, res));
 
-  // router.get('/tasks/:id',
-  // verifyAccount.reqHeader,
-  // verifyAccount.getPayload,
-  //  (req, res) =>
-  //  estimateController.getDeveloperTasks(req, res));
+  router.get('/tasks/:id',
+  verifyAccount.reqHeader,
+  verifyAccount.getPayload,
+   (req, res) =>
+   estimateController.getDeveloperTasks(req, res));
 
   router.get('/tasks',
   verifyAccount.reqHeader,
@@ -53,7 +58,6 @@ verifyAccount.getPayload,
     verifyAccount.getPayload,
      (req, res) =>
      estimateController.deleteTask(req, res));
-
 
 
 module.exports = router;

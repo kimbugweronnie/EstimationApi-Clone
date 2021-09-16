@@ -2,15 +2,20 @@
 let Estimate_repository=require('./estimate_repository');
 //const CreateTask = require('./utils/CreateTask');
 const TaskPayload = require('./utils/TaskPayload');
-let CalcuateSum = require('./utils/sum');
 let DevelopersEstimates=require('./utils/developersEstimates');
-let EstimatePayload=require('./utils/getTotals');
+let GetTotals=require('./utils/getTotals');
 const Estimate = require('./estimate_model');
 const taskpayload=require('./utils/TaskPayload');
-const UpdateTotals = require('./utils/updateTotals');
-const Estimates=require('./utils/Estimates');
-const EstimatesPayload = require('./utils/developerEstimatesPayload');
-const UpdateDeveloper = require('./utils/developerEstimatesUpdated');
+const UpdateEstimateTotals = require('./utils/updateEstimateTotals');
+const DeveloperEstimatesPayload = require('./utils/developerEstimatesPayload');
+const EstimateRequestEstimatesPayload = require('./utils/EstimateRequestEstimatesPayload');
+const EstimateRequestEstimatesUpdate = require('./utils/EstimateRequestEstimatesUpdate');
+const DeveloperEstimatesUpdate = require('./utils/developerEstimatesUpdate');
+//const UpdateEstimateRequest = require('./utils/updateEstimateRequest');
+// const Estimates=require('./utils/Estimates');
+// const EstimatesPayload = require('./utils/developerEstimatesPayload');
+// const UpdateDeveloper = require('./utils/developerEstimatesUpdated');
+//
 
 
 
@@ -24,25 +29,16 @@ class EstimateController {
      next();
   };
 
+
   async CreateEstimateTask(req,res){
     DevelopersEstimates.DeveloperEstimates(req,res);
-    EstimatePayload.estimatePayload(req,res);
-    UpdateTotals.updateTotals(req,res);
-    Estimates.DeveloperEstimates(req,res);
-    EstimatesPayload.DeveloperEstimatesPayload(req,res);
-    //UpdateDeveloper.updateDeveloper(req,res);
-
-
-
+   GetTotals.estimateTotalsPayload(req,res);
+   UpdateEstimateTotals.updateEstimateRequest(req,res);
+  DeveloperEstimatesPayload.DeveloperEstimatesPayload(req,res);
+  EstimateRequestEstimatesPayload.EstimatesRequestPayload(req,res);
+  EstimateRequestEstimatesUpdate.EstimatesRequestUpdate(req,res);
+  DeveloperEstimatesUpdate.DeveloperUpdate(req,res);
   };
-
-
-   //   CreateTask.CreateTask(req,res);
-
-
-
-
-
 
 async getOneTask(req,res){
 let singleTask=await Estimate.getSingleTask(req.params.id);
@@ -50,28 +46,34 @@ return res.send(singleTask);
 };
 
 
-async getDeveloperTasks(req,res){
-  // let getDeveloperTasks=await Estimate.gettingDeveloperTasks
-  let estimate=await Estimate.gettingDeveloperTasks(req.body.Id);
-//let getDeveloperTasks=await Estimate.gettingEstimareRequestTasks(req.params.id);
-  //console.log(getDeveloperTasks.length);
-  console.log('checking');
-  return res.send(estimate);
+async getAllDeveloperTasks(req,res){
+  let allestimates=await Estimate_repository.gettingAllDevelopersTasks(req.body.Id);
+  return res.send(allestimates);
+};
+
+
+async gettingDevelopersTasks(req,res){
+  let estimates=await Estimate_repository
+  .gettingDevelopersTasks(req.body.Id,req.params.estimateRequestId);
+  return res.send(estimates);
 };
 
 async getTasks(req,res){
-  let tasks=await Estimate.Tasks();
+  let tasks=await Estimate_repository.Tasks();
   return res.send(tasks);
 };
 
 async updateTask(req,res){
-  let updateTask=await Estimate.updateTaskDetails(req.params.id,req.body);
+  let updateTask=await Estimate_repository.updateTaskDetails(req.params.id,req.body);
 return res.send(updateTask);
 };
 
 async deleteTask(req,res){
-  let deleteTask=await Estimate.DeletingTask(req.params.id);
-return res.send({alert:`${deleteTask['task']} has been deleted`});
+
+  
+  let deleteTask=await Estimate_repository.DeletingTask(req.params.id);
+  res.send(deleteTask);
+//return res.send({alert:`${deleteTask['task']} has been deleted`});
 };
 
 }

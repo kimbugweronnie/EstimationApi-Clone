@@ -46,6 +46,11 @@ verifyAccount.reqHeader,
 verifyAccount.getPayload,
 (req, res) =>userController.DevelopersList(req, res));
 
+// router.get( "/developers" ,
+// verifyAccount.reqHeader,
+// verifyAccount.getPayload,
+// (req, res) =>verifyAccount.getPayload(req, res));
+
 
 router.get( "/projectManagers" ,
 verifyAccount.reqHeader,

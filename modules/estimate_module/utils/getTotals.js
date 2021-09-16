@@ -1,7 +1,7 @@
 let developer_estimates=require('./developersEstimates');
 class EstimateTotalPayload {
    constructor(){}
-async estimatePayload(req,res){
+async estimateTotalsPayload(req,res){
 const estimatesList=await developer_estimates.DeveloperEstimates(req,res);
 let count;
 // let count;

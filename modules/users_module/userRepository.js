@@ -25,7 +25,7 @@ return projectManagers;
 }
 
 async gettingUser(value){
- const  user= await User.findById({ _id: value});
+ const  user= await User.Developer.findById({ _id: value});
 return user;
 }
 

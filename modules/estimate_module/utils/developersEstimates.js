@@ -11,5 +11,4 @@ const estimates=await repo.gettingDevelopersTasks(tasks.developer,req.params.est
  };
 
  }
-
 module.exports = new Estimates();

@@ -28,6 +28,7 @@ class EstimateRequestController {
   constructor(){}
 
   async AddDeveloper(req, res) {
+
     DeveloperRequest.developerRequest(req,res);
     Estimate_Request.estimateRequest(req,res);
     EstimateRequestDeveloperPayload.EstimateDeveloperPayload(req,res);
@@ -68,6 +69,7 @@ return res.status(200)
    next();
 };
 
+
 async estimateRequestProjectUpdate(req,res){
   let project_estimateRequest=await project_EstimateRequest.projectEstimateRequest(req,res);
   const updatedEstimateRequest=await projectRepository
@@ -83,6 +85,7 @@ async projectManagerUpdate(req,res){
 
  return res.status(200).send({alert:'Estimate Request created',updatedProjectManager});
 };
+
 
 async getOneEstimateRequest(req, res) {
   const estimateRequest = await estimateRequest_repository

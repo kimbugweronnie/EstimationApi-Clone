@@ -1,4 +1,4 @@
-const IsShort = require('./valueLength');
+const IsShort = require('./isShort');
 class LengthPayload{
   constructor(){}
 

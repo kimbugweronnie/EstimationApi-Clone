@@ -1,24 +1,16 @@
-const developersEstimates = require('./Estimates');
-let savedEstimates = require('./developersEstimates');
-
+let developersEstimates = require('./developersEstimates');
 let userRepository=require('../../users_module/userRepository');
-class EstimatesPayload {
+// let estimateRequestRepository=require('../../estimate_request_module/estimate_request_repository');
+
+class DeveloperEstimatesPayload {
    constructor(){}
 async DeveloperEstimatesPayload(req,res){
-let estimates=await developersEstimates.DeveloperEstimates(req,res);
-estimates.push(await savedEstimates.DeveloperEstimates(req,res));
-res.send(estimates);
-
-//return res.send(await developersEstimates.DeveloperEstimates(req,res));
-// .push(await savedEstimates.DeveloperEstimates(req,res)));
-// //};
-//return res.send(await savedEstimates.DeveloperEstimates(req,res));
-//return [];
-
-
-
-//developers.pull(await developer.developerPayload(req,res));
-//return developers;
+let developer=await userRepository.gettingUser(req.body.Id);
+let estimates= await developersEstimates.DeveloperEstimates(req,res);
+estimates.forEach(estimate => {
+    developer['estimates'].push(estimate);
+});
+return  developer['estimates'];
 };
 }
-module.exports = new EstimatesPayload();
+module.exports = new DeveloperEstimatesPayload();

@@ -1,7 +1,6 @@
 {
   "collectCoverage":true,
   "coverageReporters": ["text","lcov"],
-  "coverageDirectory": "tests/coverage",
-  "coveragePathIgnorePatterns": ["/node_modules/"],
+  "coverageDirectory": "tests/coverage"
 
 }
